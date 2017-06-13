@@ -13,7 +13,7 @@
 
 #define PI 3.14159265
 
-CTFEstimate::CTFEstimate(float A,float lambda,float g,float cs,float DF1,float DF2,float alpha_g,float alpha_ast);
+CTFEstimate::CTFEstimate(float A,float lambda,float g,float cs,float DF1,float DF2,float alpha_g,float alpha_ast)
 {
 	float w2=A;
 	float w1=pow(1-pow(A,2),0.5);
