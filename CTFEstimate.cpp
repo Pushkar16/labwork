@@ -19,8 +19,7 @@ CTFEstimate::CTFEstimate(float A,float lambda,float g,float cs,float DF1,float D
 	float w1=pow(1-pow(A,2),0.5);
 	float freq=calculateFreq(DF1,DF2,alpha_g,alpha_ast);
 	float gamma=calculateGamma(lambda,g,freq,cs);
-	float ctf_value=calculateCTF(w1,w2,gamma);
-	std::cout<<"\nctf_value is "<<ctf_value<<"\n";
+	calculateCTF(w1,w2,gamma);
 
 }
 
@@ -36,9 +35,11 @@ float CTFEstimate::calculateGamma(float lambda,float g,float freq, float cs)
    float fract=1/a;
    return PI*lambda*pow(g,2)*(freq-fract);
 }
-float CTFEstimate::calculateCTF(float w1,float w2,float gamma)
+void CTFEstimate::calculateCTF(float w1,float w2,float gamma)
 {
-  float sin_func=sin(gamma *PI/180.0);
-  float cos_func=cos(gamma*PI/180.0);
-  return -(w1*sin_func)-(w2*cos_func);
+  float sin_func=-w1*sin(gamma *PI/180.0);
+  float cos_func=-w2*cos(gamma*PI/180.0);
+
+  std::cout<<"\n"<<sin_func<<"i+"<<cos_func<<"\n";
+  std::cout<<"Intensity is "<<pow(sin_func,2)+pow(cos_func,2)<<"\n";
 }

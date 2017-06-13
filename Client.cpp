@@ -17,6 +17,7 @@ int main()
 {
 	float A;
 	float lambda,g,cs;
+	std::string gmag;
 	float DF1,DF2;
     float alpha_g,alpha_ast;
 	std::string line;
@@ -40,8 +41,14 @@ int main()
 		    }
 		    if(token=="g")
 		    {
-		    	g=atof(value.c_str());
-
+		    	gmag=value.c_str();
+		    	std::cout<<"\ngmag is ::"<<gmag;
+		    	std::string delimiter2 = ",";
+		    	std::string y=gmag.substr(gmag.find(delimiter2)+1);
+		    	std::string x=gmag.substr(0,gmag.find(delimiter2));
+		    	float xcomp=strtof(x.c_str(),0);	
+		    	float ycomp=strtof(y.c_str(),0);
+		    	g=pow(xcomp,2)+pow(ycomp,2);
 		    }
 		    if(token=="CS")
 		    {
