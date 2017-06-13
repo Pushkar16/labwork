@@ -18,7 +18,7 @@ int main()
 	float A;
 	float lambda,g,cs;
 	std::string gmag;
-	float DF1,DF2;
+	float defocus;
     float alpha_g,alpha_ast;
 	std::string line;
   	std::ifstream myfile ("input.txt");
@@ -48,23 +48,19 @@ int main()
 		    	std::string x=gmag.substr(0,gmag.find(delimiter2));
 		    	float xcomp=strtof(x.c_str(),0);	
 		    	float ycomp=strtof(y.c_str(),0);
-		    	g=pow(xcomp,2)+pow(ycomp,2);
+		    	g=pow(pow(xcomp,2)+pow(ycomp,2),0.5);
 		    }
 		    if(token=="CS")
 		    {
 		    	cs=atof(value.c_str());
 
 		    }
-		    if(token=="DF1")
+		    if(token=="defocus")
 		    {
-		    	DF1=atof(value.c_str());
+		    	defocus=atof(value.c_str());
 
 		    }
-		    if(token=="DF2")
-		    {
-		    	DF2=atof(value.c_str());
-
-		    }
+		   
 		    if(token=="alpha_g")
 		    {
 		    	alpha_g=atof(value.c_str());
@@ -81,6 +77,5 @@ int main()
     }
   }
   	//std::cout<<w1<<"\n"<<w2<<"\n"<<lambda<<"\n"<<g<<"\n"<<cs<<"\n"<<alpha_g<<"\n"<<alpha_ast;
-	CTFEstimate ctf=CTFEstimate(A,lambda,g,cs,DF1,DF2,alpha_g,alpha_ast);
-	std::cout<<"in client\n";
+	CTFEstimate ctf=CTFEstimate(A,lambda,g,cs,defocus,alpha_g,alpha_ast);
 }
